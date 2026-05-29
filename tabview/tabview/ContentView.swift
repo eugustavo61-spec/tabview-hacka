@@ -8,12 +8,13 @@ struct ContentView: View {
                 Image(systemName:"paintbrush.fill")
                     .font(.system(size:120))
                     .foregroundColor(.black)
-            
                 
-            } .tabItem{
+                
+            }
+            .tabItem{
                 Label("Rosa", systemImage: "paintbrush.fill")
-            
-                }
+                
+            }
             ZStack {
                 Color .blue
                     .ignoresSafeArea()
@@ -37,16 +38,51 @@ struct ContentView: View {
                     .font(.system(size:120))
                     .foregroundColor(.black)
                 
+                
             }
-            
+            NavigationStack{
+                List{
+                    
+                    NavigationLink("item 1"){
+                        DetalheView(
+                            titulo: "item 1",
+                            cor :.pink)
+                    }
+                    NavigationLink("item 2"){
+                        DetalheView(
+                            titulo: "item 2",
+                            cor : .blue)
+                    }
+                    NavigationLink("item 3"){
+                        DetalheView(
+                            titulo: "item 3",
+                            cor : .gray)
+                    }
+                }
+                .navigationTitle("lista A")
+            }
+            .tabItem{
+                Label ("listas",
+                       systemImage: "list.bullet")
+            }
+        }
+        
+    }
+    struct DetalheView: View{
+        var titulo : String
+        var cor : Color
+        var body: some View {
+            ZStack{
+                cor
+                    .ignoresSafeArea()
+                Text(titulo)
+                    .font(.largeTitle)
+                    .bold()
+                
+            }
         }
     }
-    
 }
-
-
-
-
 #Preview {
     ContentView()
 }
